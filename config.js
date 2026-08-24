@@ -17,6 +17,14 @@ window.APP_CONFIG = {
     const img=document.getElementById('adminBrandLogo');
     if(img) img.src=window.APP_CONFIG.OFFICIAL_LOGO_URL;
   };
+  const loadDeliveryAdmin=()=>{
+    if(document.querySelector('script[data-delivery-admin]'))return;
+    const s=document.createElement('script');
+    s.src='./delivery-admin.js?v=1';
+    s.dataset.deliveryAdmin='1';
+    document.body.appendChild(s);
+  };
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',applyLogo,{once:true});
   else applyLogo();
+  window.addEventListener('load',()=>setTimeout(loadDeliveryAdmin,150));
 })();
